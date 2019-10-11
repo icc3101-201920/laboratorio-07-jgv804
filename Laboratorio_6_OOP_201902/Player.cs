@@ -179,24 +179,36 @@ namespace Laboratorio_6_OOP_201902
 
         int[] IAttackPoints.GetAttackPoints(EnumType line)
         {
+            CombatCard meleeCard;
+            CombatCard rangeCard;
+            CombatCard longRangeCard;
+
             int[] temparrayMelee = new Array[this.board.PlayerCards[Id][EnumType.melee].Count()-1];
             int[] temparrayRange = new Array[this.board.PlayerCards[Id][EnumType.range].Count()-1];
             int[] temparrayLongRange = new Array[this.board.PlayerCards[Id][EnumType.longRange].Count() - 1];
-            for(int p =0;p< this.board.PlayerCards[Id][EnumType.melee].Count(); p++)
+            for(int p =0;p< this.board.PlayerCards[Id][EnumType.melee].Count; p++)
             {
-                temparrayMelee[p] = this.board.PlayerCards[Id][EnumType.melee][p].AttackPoints();
+                meleeCard = this.board.PlayerCards[Id][EnumType.melee][p] as CombatCard;
+                temparrayMelee[p] = meleeCard.AttackPoints;
 
             }
-            for (int k = 0; k < this.board.PlayerCards[Id][EnumType.range].Count(); k++)
+            for (int k = 0; k < this.board.PlayerCards[Id][EnumType.range].Count; k++)
             {
-                temparrayMelee[k] = this.board.PlayerCards[Id][EnumType.range][j].AttackPoints();
+                rangeCard = this.board.PlayerCards[Id][EnumType.range][k] as CombatCard;
+                temparrayRange[k] = rangeCard.AttackPoints;
 
             }
-            for (int p = 0; p < this.board.PlayerCards[Id][EnumType.melee].Count(); p++)
+            for (int j = 0; p < this.board.PlayerCards[Id][EnumType.longRange].Count; j++)
             {
-                temparrayMelee[p] = this.board.PlayerCards[Id][EnumType.melee][p].AttackPoints();
+                longRangeCard = this.board.PlayerCards[Id][EnumType.melee][j];
+                temparrayLongRange[j] =longRangeCard.AttackPoints;
 
             }
+            int[] ArraySum = new T[temparrayMelee.Length + temparrayRange.Length +temparrayLongRange.Length];
+            Array.Copy(temparrayMelee, ArraySum, temparrayMelee.Length);
+            Array.Copy(temparrayRange, 0, ArraySum, temparrayMelee.Length, temparrayRange.Length);
+            ArraySum.Copy(temparrayLongRange, 0, ArraySum, temparrayMelee.Length + temparrayRange.Length, temparrayLongRange.Length);
+            return ArraySum;
 
 
         } 
