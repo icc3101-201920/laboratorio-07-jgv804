@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Laboratorio_6_OOP_201902
 {
-    public class Player
+    public class Player : IAttackPoints
     {
         //Constantes
         private const int LIFE_POINTS = 2;
@@ -176,6 +176,30 @@ namespace Laboratorio_6_OOP_201902
                 return new SpecialCard(card.Name, card.Type, card.Effect);
             }
         }
+
+        int[] IAttackPoints.GetAttackPoints(EnumType line)
+        {
+            int[] temparrayMelee = new Array[this.board.PlayerCards[Id][EnumType.melee].Count()-1];
+            int[] temparrayRange = new Array[this.board.PlayerCards[Id][EnumType.range].Count()-1];
+            int[] temparrayLongRange = new Array[this.board.PlayerCards[Id][EnumType.longRange].Count() - 1];
+            for(int p =0;p< this.board.PlayerCards[Id][EnumType.melee].Count(); p++)
+            {
+                temparrayMelee[p] = this.board.PlayerCards[Id][EnumType.melee][p].AttackPoints();
+
+            }
+            for (int k = 0; k < this.board.PlayerCards[Id][EnumType.range].Count(); k++)
+            {
+                temparrayMelee[k] = this.board.PlayerCards[Id][EnumType.range][j].AttackPoints();
+
+            }
+            for (int p = 0; p < this.board.PlayerCards[Id][EnumType.melee].Count(); p++)
+            {
+                temparrayMelee[p] = this.board.PlayerCards[Id][EnumType.melee][p].AttackPoints();
+
+            }
+
+
+        } 
 
     }
 }
