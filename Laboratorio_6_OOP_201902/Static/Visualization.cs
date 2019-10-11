@@ -103,7 +103,8 @@ namespace Laboratorio_6_OOP_201902.Static
             Console.WriteLine("Board\n\n");
             if (player == 1)
             {
-                
+                Console.WriteLine($"Opponent: - Life Points:   {lifePoints[0]} {attackPoints[0]} " );
+                Console.WriteLine("(LongRange)" + $"{}");
             }
             else
             {
