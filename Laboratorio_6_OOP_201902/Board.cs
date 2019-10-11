@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Laboratorio_6_OOP_201902
 {
-    public class Board
+    public class Board : IAttackPoints
     {
         //Constantes
         private const int DEFAULT_NUMBER_OF_PLAYERS = 2;
@@ -115,7 +115,7 @@ namespace Laboratorio_6_OOP_201902
             AddCard(captainCards[0][0], 0);
             AddCard(captainCards[1][0], 1);
         }
-        public int[] GetMeleeAttackPoints()
+        /*public int[] GetMeleeAttackPoints()
         {
             //Debe sumar todos los puntos de ataque de las cartas melee y retornar los valores por jugador.
             int[] totalAttack = new int[] { 0, 0 };
@@ -131,8 +131,8 @@ namespace Laboratorio_6_OOP_201902
             }
             return totalAttack;
             
-        }
-        public int[] GetRangeAttackPoints()
+        }*/
+        /*public int[] GetRangeAttackPoints()
         {
             //Debe sumar todos los puntos de ataque de las cartas range y retornar los valores por jugador.
             int[] totalAttack = new int[] { 0, 0 };
@@ -147,8 +147,8 @@ namespace Laboratorio_6_OOP_201902
                 }
             }
             return totalAttack;
-        }
-        public int[] GetLongRangeAttackPoints()
+        }*/
+        /*public int[] GetLongRangeAttackPoints()
         {
             //Debe sumar todos los puntos de ataque de las cartas longRange y retornar los valores por jugador.
             int[] totalAttack = new int[] { 0, 0 };
@@ -163,6 +163,23 @@ namespace Laboratorio_6_OOP_201902
                 }
             }
             return totalAttack;
+        }*/
+        int[] IAttackPoints.GetAttackPoints(EnumType line)
+        {
+            int[] totalAttack = new int[] { 0, 0 };
+            for (int i = 0; i < 2; i++)
+            {
+                if (playerCards[i].ContainsKey(line))
+                {
+                    foreach (CombatCard card in playerCards[i][line])
+                    {
+                        totalAttack[i] += card.AttackPoints;
+                    }
+                }
+            }
+            return totalAttack;
+
+
         }
 
     }
