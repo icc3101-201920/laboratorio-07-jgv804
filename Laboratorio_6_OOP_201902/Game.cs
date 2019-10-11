@@ -215,9 +215,9 @@ namespace Laboratorio_6_OOP_201902
         }
         public int GetRoundWinner()
         {
-            if (CheckIfEndGame())
+            if (this.CheckIfEndGame())
             {
-                return GetWinner();
+                return this.GetWinner();
             }
             else
             {

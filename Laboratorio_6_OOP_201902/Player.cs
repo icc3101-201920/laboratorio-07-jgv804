@@ -186,29 +186,43 @@ namespace Laboratorio_6_OOP_201902
             int[] temparrayMelee = new Array[this.board.PlayerCards[Id][EnumType.melee].Count()];
             int[] temparrayRange = new Array[this.board.PlayerCards[Id][EnumType.range].Count()];
             int[] temparrayLongRange = new Array[this.board.PlayerCards[Id][EnumType.longRange].Count()];
-            for(int p =0;p< this.board.PlayerCards[Id][EnumType.melee].Count; p++)
+            int[] zero = new int[] { 0, 0 };
+            if (line = EnumType.melee)
             {
-                meleeCard = this.board.PlayerCards[Id][EnumType.melee][p] as CombatCard;
-                temparrayMelee[p] = meleeCard.AttackPoints;
+                for (int p = 0; p < this.board.PlayerCards[Id][EnumType.melee].Count; p++)
+                {
+                    meleeCard = this.board.PlayerCards[Id][EnumType.melee][p] as CombatCard;
+                    temparrayMelee[p] = meleeCard.AttackPoints;
 
+                }
+                return temparrayMelee;
             }
-            for (int k = 0; k < this.board.PlayerCards[Id][EnumType.range].Count; k++)
+
+            if (line = EnumType.melee)
             {
-                rangeCard = this.board.PlayerCards[Id][EnumType.range][k] as CombatCard;
-                temparrayRange[k] = rangeCard.AttackPoints;
+                for (int k = 0; k < this.board.PlayerCards[Id][EnumType.range].Count; k++)
+                {
+                    rangeCard = this.board.PlayerCards[Id][EnumType.range][k] as CombatCard;
+                    temparrayRange[k] = rangeCard.AttackPoints;
 
+                }
+                return temparrayRange;
             }
-            for (int j = 0; p < this.board.PlayerCards[Id][EnumType.longRange].Count; j++)
+            if (line = EnumType.longRange)
             {
-                longRangeCard = this.board.PlayerCards[Id][EnumType.melee][j];
-                temparrayLongRange[j] =longRangeCard.AttackPoints;
+                for (int j = 0; p < this.board.PlayerCards[Id][EnumType.longRange].Count; j++)
+                {
+                    longRangeCard = this.board.PlayerCards[Id][EnumType.melee][j];
+                    temparrayLongRange[j] = longRangeCard.AttackPoints;
 
+                }
+                return temparrayLongRange;
             }
-            int[] ArraySum = new T[temparrayMelee.Length + temparrayRange.Length +temparrayLongRange.Length];
-            Array.Copy(temparrayMelee, ArraySum, temparrayMelee.Length);
-            Array.Copy(temparrayRange, 0, ArraySum, temparrayMelee.Length, temparrayRange.Length);
-            ArraySum.Copy(temparrayLongRange, 0, ArraySum, temparrayMelee.Length + temparrayRange.Length, temparrayLongRange.Length);
-            return ArraySum;
+            else
+            {
+                return zero;
+            }
+            
 
 
         } 
