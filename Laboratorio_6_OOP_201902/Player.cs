@@ -186,7 +186,7 @@ namespace Laboratorio_6_OOP_201902
             int[] temparrayMelee = new int[this.board.PlayerCards[Id][EnumType.melee].Count];
             int[] temparrayRange = new int[this.board.PlayerCards[Id][EnumType.range].Count];
             int[] temparrayLongRange = new int[this.board.PlayerCards[Id][EnumType.longRange].Count];
-            int[] zero = new int[] { 0, 0 };
+            
             for (int p = 0; p < this.board.PlayerCards[Id][EnumType.melee].Count; p++)
             {
                 meleeCard = this.board.PlayerCards[Id][EnumType.melee][p] as CombatCard;

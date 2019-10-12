@@ -20,6 +20,8 @@ namespace Laboratorio_6_OOP_201902
         private List<Deck> decks;
         private List<SpecialCard> captains;
         private Board boardGame;
+        public int[] LifeP;
+        public int[] AttackP;
         internal int turn;
 
         //Constructor
@@ -37,6 +39,10 @@ namespace Laboratorio_6_OOP_201902
             players[0].Board = boardGame;
             players[1].Board = boardGame;
             turn = 0;
+            LifeP = new int[2];
+            AttackP = new int[2];
+            
+            
         }
         //Propiedades
         public Player[] Players
@@ -112,7 +118,26 @@ namespace Laboratorio_6_OOP_201902
         {
             int userInput = 0;
             int firstOrSecondUser = ActivePlayer.Id == 0 ? 0 : 1;
-            
+            int count1=  0;
+            int count2 = 0;
+            IAttackPoints playa1 = players[0];
+            IAttackPoints playa2 = players[1];
+            LifeP[0] = players[0].LifePoints;
+            LifeP[1] = players[1].LifePoints;
+            for(int m = 0; m < playa1.GetAttackPoints(EnumType.None).Length; m++)
+            {
+                count1 += playa1.GetAttackPoints(EnumType.None)[m];
+            }
+            for (int n = 0; n < playa2.GetAttackPoints(EnumType.None).Length; n++)
+            {
+                count2 += playa2.GetAttackPoints(EnumType.None)[n];
+            }
+            AttackP[0] = count1;
+            AttackP[1] = count2;
+
+
+
+
 
             //turno 0 o configuracion
             if (turn == 0)
@@ -157,9 +182,14 @@ namespace Laboratorio_6_OOP_201902
                     firstOrSecondUser = ActivePlayer.Id == 0 ? 1 : 0;
                 }
                 turn += 1;
+               
+            }
+            while (CheckIfEndGame() != true)
+            {
+
             }
 
-            
+
         }
         public void AddDecks()
         {
@@ -224,6 +254,10 @@ namespace Laboratorio_6_OOP_201902
                 //-2 en caso de que el juego siga en curso//
                 return -2;
             }
+        }
+        public void play2()
+        {
+
         }
     }
 }
