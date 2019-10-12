@@ -184,12 +184,13 @@ namespace Laboratorio_6_OOP_201902
                 turn += 1;
                
             }
+
             IAttackPoints playa1 = players[0];
             IAttackPoints playa2 = players[1];
             LifeP[0] = players[0].LifePoints;
             LifeP[1] = players[1].LifePoints;
-            
-            for(int y = 0; y < players[0].Hand.Cards.Count; y++)
+
+            /*for(int y = 0; y < players[0].Hand.Cards.Count; y++)
             {
                 if (players[0].Hand.Cards[y] is CombatCard)
                 {
@@ -203,18 +204,50 @@ namespace Laboratorio_6_OOP_201902
                 {
                     BoardGame.AddCard(players[1].Hand.Cards[w], 1, players[1].Hand.Cards[w].Type);
                 }
-            }
-            AttackP[0] = playa1.GetAttackPoints(EnumType.None)[0];
-            AttackP[1] = playa2.GetAttackPoints(EnumType.None)[0];
-            Visualization.ShowBoard(BoardGame, ActivePlayer.Id,LifeP,AttackP);
-           
-
-            /*while (CheckIfEndGame() != true)
-            {
-
+                
+             }*/
             
 
-            }*/
+           
+
+            while (CheckIfEndGame() != true)
+            {
+                
+                if (ActivePlayer.Id == 0)
+                {
+                    Visualization.ShowBoard(BoardGame, ActivePlayer.Id, LifeP, AttackP);
+                    Visualization.ShowProgramMessage($"Player {ActivePlayer.Id + 1} will draw a card");
+                    ActivePlayer.DrawCard();
+                    Visualization.ShowHand(ActivePlayer.Hand);
+                    Visualization.ShowListOptions(new List<string>() { "Play Card", "Pass" });
+                    userInput=Visualization.GetUserInput(1);
+                    if (userInput == 0)
+                    {
+                        Visualization.ClearConsole();
+                        Visualization.ShowBoard(BoardGame, ActivePlayer.Id, LifeP, AttackP);
+                        Visualization.ShowProgramMessage($"Player {ActivePlayer.Id + 1} play cards:");
+                        Visualization.ShowHand(ActivePlayer.Hand);
+
+                        for (int i = 0; i < ActivePlayer.Hand.Cards.Count; i++)
+                        {
+                            Visualization.ShowProgramMessage($"Input the number of the cards you'd like to  change (max {ActivePlayer.Hand.Cards.Count}). To stop enter -1");
+                            userInput = Visualization.GetUserInput(ActivePlayer.Hand.Cards.Count, true);
+                            if (userInput == -1) break;
+                            ActivePlayer.PlayCard(userInput, ActivePlayer.Hand.Cards[userInput].Type);
+                            Visualization.ShowHand(ActivePlayer.Hand);
+                        }
+                    }
+                    Visualization.ClearConsole();
+                    ActivePlayer.Id += 1;
+                    turn += 1;
+
+
+
+                }
+
+
+
+            }
 
 
         }
