@@ -117,7 +117,9 @@ namespace Laboratorio_6_OOP_201902
         public void Play()
         {
             int userInput = 0;
+            int useInputB = 0;
             int firstOrSecondUser = ActivePlayer.Id == 0 ? 0 : 1;
+            bool GameSwitch = false;
             //int count1=  0;//
             //int count2 = 0;//
             /*IAttackPoints playa1 = players[0];
@@ -210,7 +212,7 @@ namespace Laboratorio_6_OOP_201902
 
            
 
-            while (CheckIfEndGame() != true)
+            while (GameSwitch != true)
             {
                 
                 if (ActivePlayer.Id == 0)
@@ -231,16 +233,125 @@ namespace Laboratorio_6_OOP_201902
                             userInput = Visualization.GetUserInput(ActivePlayer.Hand.Cards.Count);
                             
                             Visualization.ClearConsole();
-                            
+                            if (ActivePlayer.Hand.Cards[userInput].Type == EnumType.buff)
+                            {
+                            Visualization.ShowProgramMessage("Please Select which type you'd like to buff:");
+                            Visualization.ShowProgramMessage("(0): LongRange (1): Range (2): Melee");
+                            useInputB = Visualization.GetUserInput(2);
+
+                            switch (useInputB)
+                            {
+                                case 0:
+                                    ActivePlayer.PlayCard(userInput, EnumType.bufflongRange);
+                                    break;
+                                case 1:
+                                    ActivePlayer.PlayCard(userInput, EnumType.buffrange);
+                                    break;
+                                case 2:
+                                    ActivePlayer.PlayCard(userInput, EnumType.buffmelee);
+                                    break;
+
+
+                            }
+                            }
+                            else
+                            {
                             ActivePlayer.PlayCard(userInput, ActivePlayer.Hand.Cards[userInput].Type);
+
+                            }
+                            
+                            AttackP[ActivePlayer.Id] = playa1.GetAttackPoints(EnumType.None)[0];
+                            //Visualization.ShowProgramMessage($"Player {ActivePlayer.Id + 1} has played{ActivePlayer.Hand.Cards[userInput].Name} ");//
                             Visualization.ShowHand(ActivePlayer.Hand);
                             Visualization.ShowBoard(BoardGame, ActivePlayer.Id, LifeP, AttackP);
                             
                         
                     }
+                    Visualization.ShowProgramMessage($"Player {ActivePlayer.Id + 1} Turn has ended please press anykey to continue to the next player turn");
+                    Console.ReadKey();
                     Visualization.ClearConsole();
                     ActivePlayer.Id += 1;
-                 
+                    Visualization.ShowBoard(BoardGame, ActivePlayer.Id, LifeP, AttackP);
+                    Visualization.ShowProgramMessage($"Player {ActivePlayer.Id + 1} will draw a card");
+                    ActivePlayer.DrawCard();
+                    Visualization.ShowHand(ActivePlayer.Hand);
+                    Visualization.ShowListOptions(new List<string>() { "Play Card", "Pass" });
+                    userInput = Visualization.GetUserInput(1);
+                    if (userInput == 0)
+                    {
+                        Visualization.ClearConsole();
+                        Visualization.ShowBoard(BoardGame, ActivePlayer.Id, LifeP, AttackP);
+                        Visualization.ShowProgramMessage($"Player {ActivePlayer.Id + 1} play cards:");
+                        Visualization.ShowHand(ActivePlayer.Hand);
+                        Visualization.ShowProgramMessage($"Input the number of the cards you'd like to  play (max {ActivePlayer.Hand.Cards.Count}). To stop enter -1");
+                        userInput = Visualization.GetUserInput(ActivePlayer.Hand.Cards.Count);
+
+                        Visualization.ClearConsole();
+                        if (ActivePlayer.Hand.Cards[userInput].Type == EnumType.buff)
+                        {
+                            Visualization.ShowProgramMessage("Please Select which type you'd like to buff:");
+                            Visualization.ShowProgramMessage("(0): LongRange (1): Range (2): Melee");
+                            useInputB = Visualization.GetUserInput(2);
+
+                            switch (useInputB)
+                            {
+                                case 0:
+                                    ActivePlayer.PlayCard(userInput, EnumType.bufflongRange);
+                                    break;
+                                case 1:
+                                    ActivePlayer.PlayCard(userInput, EnumType.buffrange);
+                                    break;
+                                case 2:
+                                    ActivePlayer.PlayCard(userInput, EnumType.buffmelee);
+                                    break;
+
+
+                            }
+                        }
+                        else
+                        {
+                            ActivePlayer.PlayCard(userInput, ActivePlayer.Hand.Cards[userInput].Type);
+
+                        }
+                        AttackP[ActivePlayer.Id] = playa2.GetAttackPoints(EnumType.None)[0];
+                        //Visualization.ShowProgramMessage($"Player {ActivePlayer.Id + 1} has played{ActivePlayer.Hand.Cards[userInput].Name} ");//
+                        Visualization.ShowHand(ActivePlayer.Hand);
+                        Visualization.ShowBoard(BoardGame, ActivePlayer.Id, LifeP, AttackP);
+
+
+                    }
+                    Visualization.ClearConsole();
+                    Visualization.ShowBoard(BoardGame, ActivePlayer.Id, LifeP, AttackP);
+                    if (AttackP[0] < AttackP[1])
+                    {
+                        Visualization.ShowProgramMessage("Player 2 has won this round, Player 1 has lost one lifepoint  ");
+                        LifeP[0] -= 1;
+                        players[0].LifePoints -= 1;
+
+
+                    }
+                    if (AttackP[1] < AttackP[0])
+                    {
+                        Visualization.ShowProgramMessage("Player 1 has won this round, Player 2 has lost one lifepoint  ");
+                        LifeP[1] -= 1;
+                        players[1].LifePoints -= 1;
+
+
+                    }
+                    if (AttackP[0] == AttackP[1])
+                    {
+                        Visualization.ShowProgramMessage("Player 2 has tied this round with Player 1,  both Players  have lost one lifepoint  ");
+                        LifeP[0] -= 1;
+                        LifeP[1] -= 1;
+                        players[0].LifePoints -= 1;
+                        players[1].LifePoints -= 1;
+
+
+                    }
+                    GameSwitch=this.CheckIfEndGame();
+
+
+
 
 
 
@@ -263,15 +374,125 @@ namespace Laboratorio_6_OOP_201902
                         userInput = Visualization.GetUserInput(ActivePlayer.Hand.Cards.Count);
 
                         Visualization.ClearConsole();
+                        if (ActivePlayer.Hand.Cards[userInput].Type == EnumType.buff)
+                        {
+                            Visualization.ShowProgramMessage("Please Select which type you'd like to buff:");
+                            Visualization.ShowProgramMessage("(0): LongRange (1): Range (2): Melee");
+                            useInputB = Visualization.GetUserInput(2);
 
-                        ActivePlayer.PlayCard(userInput, ActivePlayer.Hand.Cards[userInput].Type);
+                            switch (useInputB)
+                            {
+                                case 0:
+                                    ActivePlayer.PlayCard(userInput, EnumType.bufflongRange);
+                                    break;
+                                case 1:
+                                    ActivePlayer.PlayCard(userInput, EnumType.buffrange);
+                                    break;
+                                case 2:
+                                    ActivePlayer.PlayCard(userInput, EnumType.buffmelee);
+                                    break;
+
+
+                            }
+                        }
+                        else
+                        {
+                            ActivePlayer.PlayCard(userInput, ActivePlayer.Hand.Cards[userInput].Type);
+
+                        }
+                        AttackP[ActivePlayer.Id] = playa2.GetAttackPoints(EnumType.None)[0];
+                        //Visualization.ShowProgramMessage($"Player {ActivePlayer.Id + 1} has played{ActivePlayer.Hand.Cards[userInput].Name} ");//
+                        Visualization.ShowHand(ActivePlayer.Hand);
+                        Visualization.ShowBoard(BoardGame, ActivePlayer.Id, LifeP, AttackP);
+
+
+                    }
+                    Visualization.ShowProgramMessage($"Player {ActivePlayer.Id + 1} Turn has ended please press anykey to continue to the next player turn");
+                    Console.ReadKey();
+                    Visualization.ClearConsole();
+                    ActivePlayer.Id -= 1;
+                    Visualization.ShowBoard(BoardGame, ActivePlayer.Id, LifeP, AttackP);
+                    Visualization.ShowProgramMessage($"Player {ActivePlayer.Id + 1} will draw a card");
+                    ActivePlayer.DrawCard();
+                    Visualization.ShowHand(ActivePlayer.Hand);
+                    Visualization.ShowListOptions(new List<string>() { "Play Card", "Pass" });
+                    userInput = Visualization.GetUserInput(1);
+                    if (userInput == 0)
+                    {
+                        Visualization.ClearConsole();
+                        Visualization.ShowBoard(BoardGame, ActivePlayer.Id, LifeP, AttackP);
+                        Visualization.ShowProgramMessage($"Player {ActivePlayer.Id + 1} play cards:");
+                        Visualization.ShowHand(ActivePlayer.Hand);
+                        Visualization.ShowProgramMessage($"Input the number of the cards you'd like to  play (max {ActivePlayer.Hand.Cards.Count}). To stop enter -1");
+                        userInput = Visualization.GetUserInput(ActivePlayer.Hand.Cards.Count);
+
+                        Visualization.ClearConsole();
+
+                        if (ActivePlayer.Hand.Cards[userInput].Type == EnumType.buff)
+                        {
+                            Visualization.ShowProgramMessage("Please Select which type you'd like to buff:");
+                            Visualization.ShowProgramMessage("(0): LongRange (1): Range (2): Melee");
+                            useInputB = Visualization.GetUserInput(2);
+
+                            switch (useInputB)
+                            {
+                                case 0:
+                                    ActivePlayer.PlayCard(userInput, EnumType.bufflongRange);
+                                    break;
+                                case 1:
+                                    ActivePlayer.PlayCard(userInput, EnumType.buffrange);
+                                    break;
+                                case 2:
+                                    ActivePlayer.PlayCard(userInput, EnumType.buffmelee);
+                                    break;
+
+
+                            }
+                        }
+                        else
+                        {
+                            ActivePlayer.PlayCard(userInput, ActivePlayer.Hand.Cards[userInput].Type);
+
+                        }
+                        AttackP[ActivePlayer.Id] = playa1.GetAttackPoints(EnumType.None)[0];
+                        //Visualization.ShowProgramMessage($"Player {ActivePlayer.Id + 1} has played{ActivePlayer.Hand.Cards[userInput].Name} ");//
+                        
                         Visualization.ShowHand(ActivePlayer.Hand);
                         Visualization.ShowBoard(BoardGame, ActivePlayer.Id, LifeP, AttackP);
 
 
                     }
                     Visualization.ClearConsole();
-                    ActivePlayer.Id -= 1;
+                    Visualization.ShowBoard(BoardGame, ActivePlayer.Id, LifeP, AttackP);
+                    if (AttackP[0] < AttackP[1])
+                    {
+                        Visualization.ShowProgramMessage("Player 2 has won this round, Player 1 has lost one lifepoint  ");
+                        LifeP[0] -= 1;
+                        players[0].LifePoints -= 1;
+
+
+                    }
+                    if (AttackP[1] < AttackP[0])
+                    {
+                        Visualization.ShowProgramMessage("Player 1 has won this round, Player 2 has lost one lifepoint  ");
+                        LifeP[1] -= 1;
+                        players[1].LifePoints -= 1;
+
+
+                    }
+                    if (AttackP[0] == AttackP[1])
+                    {
+                        Visualization.ShowProgramMessage("Player 2 has tied this round with Player 1,  both Players  have lost one lifepoint  ");
+                        LifeP[0] -= 1;
+                        LifeP[1] -= 1;
+                        players[0].LifePoints -= 1;
+                        players[1].LifePoints -= 1;
+
+
+                    }
+                    GameSwitch=this.CheckIfEndGame();
+
+
 
                 }
 
@@ -280,6 +501,27 @@ namespace Laboratorio_6_OOP_201902
             }
 
 
+
+
+
+
+
+            int gk = this.GetWinner();
+            switch (gk)
+            {
+                case 0:
+                    Visualization.ShowProgramMessage("Player 1 has won this game");
+                    break;
+                case 1:
+                    Visualization.ShowProgramMessage("Player 2 has won this game");
+                    break;
+                case -1:
+                    Visualization.ShowProgramMessage("the game was tied");
+                    break;
+
+
+            }
+            Console.ReadKey();
         }
         public void AddDecks()
         {
