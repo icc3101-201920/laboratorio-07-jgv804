@@ -183,7 +183,7 @@ namespace Laboratorio_6_OOP_201902
             CombatCard rangeCard;
             CombatCard longRangeCard;
             int[] temparrayT = new int[1];
-            temparrayT[0] = 0;
+            
             if (this.Board.PlayerCards[Id].ContainsKey(EnumType.melee))
             {
                 for (int p = 0; p < this.board.PlayerCards[Id][EnumType.melee].Count; p++)

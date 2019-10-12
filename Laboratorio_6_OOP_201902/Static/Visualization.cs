@@ -210,7 +210,7 @@ namespace Laboratorio_6_OOP_201902.Static
                     Console.Write($"|{MeleeC.AttackPoints}|");
                 }
                 Console.Write("\n\n");
-                Console.Write("Weather Cards: ");
+                /*Console.Write("Weather Cards: ");
                 for (int d = 0; d < board.WeatherCards.Count; d++)
                 {
                     Console.ForegroundColor = ConsoleColor.Blue;
@@ -218,7 +218,7 @@ namespace Laboratorio_6_OOP_201902.Static
                     Console.Write($"|{board.WeatherCards[d].Name}|");
                 }
                 Console.ResetColor();
-                Console.Write("\n\n");
+                Console.Write("\n\n");*/
 
 
 
@@ -271,7 +271,8 @@ namespace Laboratorio_6_OOP_201902.Static
                 Console.Write($"[{Boarde.GetAttackPoints(EnumType.melee)[1]}]: ");
                 for (int q = 0; q < board.PlayerCards[1][EnumType.melee].Count; q++)
                 {
-                    Console.Write($"|{board.PlayerCards[1][EnumType.melee][q]}|");
+                    MeleeC = board.PlayerCards[1][EnumType.melee][q] as CombatCard;
+                    Console.Write($"|{MeleeC.AttackPoints}|");
                 }
                 Console.Write("\n\n");
                 Console.Write("Weather Cards: ");
@@ -279,7 +280,7 @@ namespace Laboratorio_6_OOP_201902.Static
                 {
                     Console.ForegroundColor = ConsoleColor.Blue;
 
-                    Console.Write($"|{board.WeatherCards[z]}|");
+                    Console.Write($"|{board.WeatherCards[z].Name}|");
                 }
                 Console.ResetColor();
                 Console.Write("\n\n");
@@ -295,7 +296,8 @@ namespace Laboratorio_6_OOP_201902.Static
                 Console.Write($"[{Boarde.GetAttackPoints(EnumType.longRange)[player]}]: ");
                 for (int b = 0; b < board.PlayerCards[player][EnumType.longRange].Count; b++)
                 {
-                    Console.Write($"|{board.PlayerCards[player][EnumType.longRange][b]}|");
+                    LongRangeC = board.PlayerCards[player][EnumType.longRange][b] as CombatCard;
+                    Console.Write($"|{LongRangeC.AttackPoints}|");
                 }
                 Console.Write("\n");
                 Console.Write("(Range) ");
@@ -308,7 +310,8 @@ namespace Laboratorio_6_OOP_201902.Static
                 Console.Write($"[{Boarde.GetAttackPoints(EnumType.range)[player]}]: ");
                 for (int r = 0; r < board.PlayerCards[player][EnumType.range].Count; r++)
                 {
-                    Console.Write($"|{board.PlayerCards[player][EnumType.range][r]}|");
+                    RangeC = board.PlayerCards[player][EnumType.range][r] as CombatCard;
+                    Console.Write($"|{RangeC.AttackPoints}|");
                 }
                 Console.Write("\n");
                 Console.Write("(Melee) ");
@@ -321,18 +324,19 @@ namespace Laboratorio_6_OOP_201902.Static
                 Console.Write($"[{Boarde.GetAttackPoints(EnumType.melee)[player]}]: ");
                 for (int vb = 0; vb < board.PlayerCards[player][EnumType.melee].Count; vb++)
                 {
-                    Console.Write($"|{board.PlayerCards[player][EnumType.melee][vb]}|");
+                    MeleeC = board.PlayerCards[player][EnumType.melee][vb] as CombatCard;
+                    Console.Write($"|{MeleeC.AttackPoints}|");
                 }
                 Console.Write("\n\n");
-                Console.Write("Weather Cards: ");
+               /* Console.Write("Weather Cards: ");
                 for (int df = 0; df < board.WeatherCards.Count; df++)
                 {
                     Console.ForegroundColor = ConsoleColor.Blue;
 
-                    Console.Write($"|{board.WeatherCards[df]}|");
+                    Console.Write($"|{board.WeatherCards[df].Name}|");
                 }
                 Console.ResetColor();
-                Console.Write("\n\n");
+                Console.Write("\n\n");*/
 
             }
 
