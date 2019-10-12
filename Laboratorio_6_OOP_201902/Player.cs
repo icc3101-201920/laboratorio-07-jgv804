@@ -183,11 +183,11 @@ namespace Laboratorio_6_OOP_201902
             CombatCard rangeCard;
             CombatCard longRangeCard;
 
-            int[] temparrayMelee = new Array[this.board.PlayerCards[Id][EnumType.melee].Count()];
-            int[] temparrayRange = new Array[this.board.PlayerCards[Id][EnumType.range].Count()];
-            int[] temparrayLongRange = new Array[this.board.PlayerCards[Id][EnumType.longRange].Count()];
+            int[] temparrayMelee = new int[this.board.PlayerCards[Id][EnumType.melee].Count];
+            int[] temparrayRange = new int[this.board.PlayerCards[Id][EnumType.range].Count];
+            int[] temparrayLongRange = new int[this.board.PlayerCards[Id][EnumType.longRange].Count];
             int[] zero = new int[] { 0, 0 };
-            if (line = EnumType.melee)
+            if (line == EnumType.melee)
             {
                 for (int p = 0; p < this.board.PlayerCards[Id][EnumType.melee].Count; p++)
                 {
@@ -198,7 +198,7 @@ namespace Laboratorio_6_OOP_201902
                 return temparrayMelee;
             }
 
-            if (line = EnumType.melee)
+            if (line == EnumType.melee)
             {
                 for (int k = 0; k < this.board.PlayerCards[Id][EnumType.range].Count; k++)
                 {
@@ -208,11 +208,11 @@ namespace Laboratorio_6_OOP_201902
                 }
                 return temparrayRange;
             }
-            if (line = EnumType.longRange)
+            if (line == EnumType.longRange)
             {
-                for (int j = 0; p < this.board.PlayerCards[Id][EnumType.longRange].Count; j++)
+                for (int j = 0; j < this.board.PlayerCards[Id][EnumType.longRange].Count; j++)
                 {
-                    longRangeCard = this.board.PlayerCards[Id][EnumType.melee][j];
+                    longRangeCard = this.board.PlayerCards[Id][EnumType.melee][j] as CombatCard;
                     temparrayLongRange[j] = longRangeCard.AttackPoints;
 
                 }
@@ -220,6 +220,7 @@ namespace Laboratorio_6_OOP_201902
             }
             else
             {
+
                 return zero;
             }
             

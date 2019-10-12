@@ -7,10 +7,10 @@ namespace Laboratorio_6_OOP_201902
 {
     interface IAttackPoints
     {
-        int[] GetAttackPoints(EnumType line = EnumType.none)
-        {
+        int[] GetAttackPoints(EnumType line = EnumType.None);
+        
 
-        }
+        
         
     }
 }

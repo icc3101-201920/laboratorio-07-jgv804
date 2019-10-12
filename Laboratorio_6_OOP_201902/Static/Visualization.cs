@@ -100,14 +100,222 @@ namespace Laboratorio_6_OOP_201902.Static
         }
         public static void ShowBoard(Board board, int player, int[] lifePoints, int[] attackPoints)
         {
+            IAttackPoints Boarde = board;
             Console.WriteLine("Board\n\n");
             if (player == 1)
             {
-                Console.WriteLine($"Opponent: - Life Points:   {lifePoints[0]} {attackPoints[0]} " );
-                Console.WriteLine("(LongRange)" + $"{}");
+                Console.WriteLine($"Opponent: - Life Points:   {lifePoints[0]} AttackPoints:  {attackPoints[0]} " );
+
+                Console.Write("(LongRange) ");
+                if (board.PlayerCards[0].ContainsKey(EnumType.bufflongRange))
+                {
+                    Console.Write("(Buffed");
+                    
+                    
+                }
+                Console.Write( $"[{Boarde.GetAttackPoints(EnumType.longRange)[0]}]: ");
+                for (int o = 0; o < board.PlayerCards[0][EnumType.longRange].Count; o++)
+                {
+                    Console.Write($"|{board.PlayerCards[0][EnumType.longRange][o]}|");
+                }
+                Console.Write("\n");
+                Console.Write("(Range) ");
+                if (board.PlayerCards[0].ContainsKey(EnumType.buffrange))
+                {
+                    Console.Write("(Buffed");
+
+
+                }
+                Console.Write($"[{Boarde.GetAttackPoints(EnumType.range)[0]}]: ");
+                for (int f = 0; f < board.PlayerCards[0][EnumType.range].Count; f++)
+                {
+                    Console.Write($"|{board.PlayerCards[0][EnumType.range][f]}|");
+                }
+                Console.Write("\n");
+                Console.Write("(Melee) ");
+                if (board.PlayerCards[0].ContainsKey(EnumType.buffmelee))
+                {
+                    Console.Write("(Buffed");
+
+
+                }
+                Console.Write($"[{Boarde.GetAttackPoints(EnumType.melee)[0]}]: ");
+                for (int a = 0; a < board.PlayerCards[0][EnumType.melee].Count; a++)
+                {
+                    Console.Write($"|{board.PlayerCards[0][EnumType.melee][a]}|");
+                }
+                Console.Write("\n\n");
+                Console.Write("Weather Cards: ");
+                for(int h = 0; h < board.WeatherCards.Count; h++)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+
+                    Console.Write($"|{board.WeatherCards[h]}|");
+                }
+                Console.ResetColor();
+                Console.Write("\n\n");
+                Console.WriteLine($"You: - Life Points:   {lifePoints[player]} AttackPoints:  {attackPoints[player]} ");
+
+                Console.Write("(LongRange) ");
+                if (board.PlayerCards[player].ContainsKey(EnumType.bufflongRange))
+                {
+                    Console.Write("(Buffed");
+
+
+                }
+                Console.Write($"[{Boarde.GetAttackPoints(EnumType.longRange)[player]}]: ");
+                for (int t = 0; t < board.PlayerCards[player][EnumType.longRange].Count; t++)
+                {
+                    Console.Write($"|{board.PlayerCards[player][EnumType.longRange][t]}|");
+                }
+                Console.Write("\n");
+                Console.Write("(Range) ");
+                if (board.PlayerCards[player].ContainsKey(EnumType.buffrange))
+                {
+                    Console.Write("(Buffed");
+
+
+                }
+                Console.Write($"[{Boarde.GetAttackPoints(EnumType.range)[player]}]: ");
+                for (int s = 0; s < board.PlayerCards[player][EnumType.range].Count; s++)
+                {
+                    Console.Write($"|{board.PlayerCards[player][EnumType.range][s]}|");
+                }
+                Console.Write("\n");
+                Console.Write("(Melee) ");
+                if (board.PlayerCards[player].ContainsKey(EnumType.buffmelee))
+                {
+                    Console.Write("(Buffed");
+
+
+                }
+                Console.Write($"[{Boarde.GetAttackPoints(EnumType.melee)[player]}]: ");
+                for (int v = 0; v < board.PlayerCards[player][EnumType.melee].Count; v++)
+                {
+                    Console.Write($"|{board.PlayerCards[player][EnumType.melee][v]}|");
+                }
+                Console.Write("\n\n");
+                Console.Write("Weather Cards: ");
+                for (int d = 0; d < board.WeatherCards.Count; d++)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+
+                    Console.Write($"|{board.WeatherCards[d]}|");
+                }
+                Console.ResetColor();
+                Console.Write("\n\n");
+
+
+
+
+
+
+
+
             }
             else
             {
+
+                Console.WriteLine($"Opponent: - Life Points:   {lifePoints[1]} AttackPoints:  {attackPoints[1]} ");
+
+                Console.Write("(LongRange) ");
+                if (board.PlayerCards[1].ContainsKey(EnumType.bufflongRange))
+                {
+                    Console.Write("(Buffed");
+
+
+                }
+                Console.Write($"[{Boarde.GetAttackPoints(EnumType.longRange)[1]}]: ");
+                for (int c = 0; c < board.PlayerCards[1][EnumType.longRange].Count; c++)
+                {
+                    Console.Write($"|{board.PlayerCards[1][EnumType.longRange][c]}|");
+                }
+                Console.Write("\n");
+                Console.Write("(Range) ");
+                if (board.PlayerCards[1].ContainsKey(EnumType.buffrange))
+                {
+                    Console.Write("(Buffed");
+
+
+                }
+                Console.Write($"[{Boarde.GetAttackPoints(EnumType.range)[1]}]: ");
+                for (int x = 0; x < board.PlayerCards[1][EnumType.range].Count; x++)
+                {
+                    Console.Write($"|{board.PlayerCards[1][EnumType.range][x]}|");
+                }
+                Console.Write("\n");
+                Console.Write("(Melee) ");
+                if (board.PlayerCards[1].ContainsKey(EnumType.buffmelee))
+                {
+                    Console.Write("(Buffed");
+
+
+                }
+                Console.Write($"[{Boarde.GetAttackPoints(EnumType.melee)[1]}]: ");
+                for (int q = 0; q < board.PlayerCards[1][EnumType.melee].Count; q++)
+                {
+                    Console.Write($"|{board.PlayerCards[1][EnumType.melee][q]}|");
+                }
+                Console.Write("\n\n");
+                Console.Write("Weather Cards: ");
+                for (int z = 0; z < board.WeatherCards.Count; z++)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+
+                    Console.Write($"|{board.WeatherCards[z]}|");
+                }
+                Console.ResetColor();
+                Console.Write("\n\n");
+                Console.WriteLine($"You: - Life Points:   {lifePoints[player]} AttackPoints:  {attackPoints[player]} ");
+
+                Console.Write("(LongRange) ");
+                if (board.PlayerCards[player].ContainsKey(EnumType.bufflongRange))
+                {
+                    Console.Write("(Buffed");
+
+
+                }
+                Console.Write($"[{Boarde.GetAttackPoints(EnumType.longRange)[player]}]: ");
+                for (int b = 0; b < board.PlayerCards[player][EnumType.longRange].Count; b++)
+                {
+                    Console.Write($"|{board.PlayerCards[player][EnumType.longRange][b]}|");
+                }
+                Console.Write("\n");
+                Console.Write("(Range) ");
+                if (board.PlayerCards[player].ContainsKey(EnumType.buffrange))
+                {
+                    Console.Write("(Buffed");
+
+
+                }
+                Console.Write($"[{Boarde.GetAttackPoints(EnumType.range)[player]}]: ");
+                for (int r = 0; r < board.PlayerCards[player][EnumType.range].Count; r++)
+                {
+                    Console.Write($"|{board.PlayerCards[player][EnumType.range][r]}|");
+                }
+                Console.Write("\n");
+                Console.Write("(Melee) ");
+                if (board.PlayerCards[player].ContainsKey(EnumType.buffmelee))
+                {
+                    Console.Write("(Buffed");
+
+
+                }
+                Console.Write($"[{Boarde.GetAttackPoints(EnumType.melee)[player]}]: ");
+                for (int vb = 0; vb < board.PlayerCards[player][EnumType.melee].Count; vb++)
+                {
+                    Console.Write($"|{board.PlayerCards[player][EnumType.melee][vb]}|");
+                }
+                Console.Write("\n\n");
+                Console.Write("Weather Cards: ");
+                for (int df = 0; df < board.WeatherCards.Count; df++)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+
+                    Console.Write($"|{board.WeatherCards[df]}|");
+                }
+                Console.ResetColor();
+                Console.Write("\n\n");
 
             }
 
