@@ -222,26 +222,56 @@ namespace Laboratorio_6_OOP_201902
                     Visualization.ShowListOptions(new List<string>() { "Play Card", "Pass" });
                     userInput=Visualization.GetUserInput(1);
                     if (userInput == 0)
+                    {                       
+                            Visualization.ClearConsole();
+                            Visualization.ShowBoard(BoardGame, ActivePlayer.Id, LifeP, AttackP);
+                            Visualization.ShowProgramMessage($"Player {ActivePlayer.Id + 1} play cards:");
+                            Visualization.ShowHand(ActivePlayer.Hand);
+                            Visualization.ShowProgramMessage($"Input the number of the cards you'd like to  play (max {ActivePlayer.Hand.Cards.Count}). To stop enter -1");
+                            userInput = Visualization.GetUserInput(ActivePlayer.Hand.Cards.Count);
+                            
+                            Visualization.ClearConsole();
+                            
+                            ActivePlayer.PlayCard(userInput, ActivePlayer.Hand.Cards[userInput].Type);
+                            Visualization.ShowHand(ActivePlayer.Hand);
+                            Visualization.ShowBoard(BoardGame, ActivePlayer.Id, LifeP, AttackP);
+                            
+                        
+                    }
+                    Visualization.ClearConsole();
+                    ActivePlayer.Id += 1;
+                 
+
+
+
+                }
+                else
+                {
+                    Visualization.ShowBoard(BoardGame, ActivePlayer.Id, LifeP, AttackP);
+                    Visualization.ShowProgramMessage($"Player {ActivePlayer.Id + 1} will draw a card");
+                    ActivePlayer.DrawCard();
+                    Visualization.ShowHand(ActivePlayer.Hand);
+                    Visualization.ShowListOptions(new List<string>() { "Play Card", "Pass" });
+                    userInput = Visualization.GetUserInput(1);
+                    if (userInput == 0)
                     {
                         Visualization.ClearConsole();
                         Visualization.ShowBoard(BoardGame, ActivePlayer.Id, LifeP, AttackP);
                         Visualization.ShowProgramMessage($"Player {ActivePlayer.Id + 1} play cards:");
                         Visualization.ShowHand(ActivePlayer.Hand);
+                        Visualization.ShowProgramMessage($"Input the number of the cards you'd like to  play (max {ActivePlayer.Hand.Cards.Count}). To stop enter -1");
+                        userInput = Visualization.GetUserInput(ActivePlayer.Hand.Cards.Count);
 
-                        for (int i = 0; i < ActivePlayer.Hand.Cards.Count; i++)
-                        {
-                            Visualization.ShowProgramMessage($"Input the number of the cards you'd like to  change (max {ActivePlayer.Hand.Cards.Count}). To stop enter -1");
-                            userInput = Visualization.GetUserInput(ActivePlayer.Hand.Cards.Count, true);
-                            if (userInput == -1) break;
-                            ActivePlayer.PlayCard(userInput, ActivePlayer.Hand.Cards[userInput].Type);
-                            Visualization.ShowHand(ActivePlayer.Hand);
-                        }
+                        Visualization.ClearConsole();
+
+                        ActivePlayer.PlayCard(userInput, ActivePlayer.Hand.Cards[userInput].Type);
+                        Visualization.ShowHand(ActivePlayer.Hand);
+                        Visualization.ShowBoard(BoardGame, ActivePlayer.Id, LifeP, AttackP);
+
+
                     }
                     Visualization.ClearConsole();
-                    ActivePlayer.Id += 1;
-                    turn += 1;
-
-
+                    ActivePlayer.Id -= 1;
 
                 }
 
