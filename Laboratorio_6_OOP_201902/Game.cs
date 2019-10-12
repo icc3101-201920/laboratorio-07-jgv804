@@ -118,9 +118,9 @@ namespace Laboratorio_6_OOP_201902
         {
             int userInput = 0;
             int firstOrSecondUser = ActivePlayer.Id == 0 ? 0 : 1;
-            int count1=  0;
-            int count2 = 0;
-            IAttackPoints playa1 = players[0];
+            //int count1=  0;//
+            //int count2 = 0;//
+            /*IAttackPoints playa1 = players[0];
             IAttackPoints playa2 = players[1];
             LifeP[0] = players[0].LifePoints;
             LifeP[1] = players[1].LifePoints;
@@ -132,8 +132,8 @@ namespace Laboratorio_6_OOP_201902
             {
                 count2 += playa2.GetAttackPoints(EnumType.None)[n];
             }
-            AttackP[0] = count1;
-            AttackP[1] = count2;
+            AttackP[0] = playa1.GetAttackPoints(EnumType.None)[0];
+            AttackP[1] = playa2.GetAttackPoints(EnumType.None)[0];*/
 
 
 
@@ -184,10 +184,36 @@ namespace Laboratorio_6_OOP_201902
                 turn += 1;
                
             }
-            while (CheckIfEndGame() != true)
+            IAttackPoints playa1 = players[0];
+            IAttackPoints playa2 = players[1];
+            LifeP[0] = players[0].LifePoints;
+            LifeP[1] = players[1].LifePoints;
+            AttackP[0] = playa1.GetAttackPoints(EnumType.None)[0];
+            AttackP[1] = playa2.GetAttackPoints(EnumType.None)[0];
+            for(int y = 0; y < players[0].Hand.Cards.Count; y++)
+            {
+                if (players[0].Hand.Cards[y] is CombatCard)
+                {
+                    BoardGame.AddCard(players[0].Hand.Cards[y], 0, players[0].Hand.Cards[y].Type);
+                }
+            }
+
+            for (int w = 0; w < players[1].Hand.Cards.Count; w++)
+            {
+                if (players[1].Hand.Cards[w] is CombatCard)
+                {
+                    BoardGame.AddCard(players[1].Hand.Cards[w], 1, players[1].Hand.Cards[w].Type);
+                }
+            }
+            Visualization.ShowBoard(BoardGame, ActivePlayer.Id,LifeP,AttackP);
+           
+
+            /*while (CheckIfEndGame() != true)
             {
 
-            }
+            
+
+            }*/
 
 
         }

@@ -102,11 +102,15 @@ namespace Laboratorio_6_OOP_201902.Static
         {
             IAttackPoints Boarde = board;
             Console.WriteLine("Board\n\n");
+            CombatCard LongRangeC;
+            CombatCard RangeC;
+            CombatCard MeleeC;
             if (player == 1)
             {
                 Console.WriteLine($"Opponent: - Life Points:   {lifePoints[0]} AttackPoints:  {attackPoints[0]} " );
 
                 Console.Write("(LongRange) ");
+
                 if (board.PlayerCards[0].ContainsKey(EnumType.bufflongRange))
                 {
                     Console.Write("(Buffed");
@@ -114,10 +118,14 @@ namespace Laboratorio_6_OOP_201902.Static
                     
                 }
                 Console.Write( $"[{Boarde.GetAttackPoints(EnumType.longRange)[0]}]: ");
+               
+                
                 for (int o = 0; o < board.PlayerCards[0][EnumType.longRange].Count; o++)
                 {
-                    Console.Write($"|{board.PlayerCards[0][EnumType.longRange][o]}|");
+                    LongRangeC = board.PlayerCards[0][EnumType.longRange][o] as CombatCard;
+                    Console.Write($"|{LongRangeC.AttackPoints}|");
                 }
+                
                 Console.Write("\n");
                 Console.Write("(Range) ");
                 if (board.PlayerCards[0].ContainsKey(EnumType.buffrange))
@@ -129,7 +137,9 @@ namespace Laboratorio_6_OOP_201902.Static
                 Console.Write($"[{Boarde.GetAttackPoints(EnumType.range)[0]}]: ");
                 for (int f = 0; f < board.PlayerCards[0][EnumType.range].Count; f++)
                 {
-                    Console.Write($"|{board.PlayerCards[0][EnumType.range][f]}|");
+                    RangeC = board.PlayerCards[0][EnumType.range][f] as CombatCard;
+                    Console.Write($"|{RangeC.AttackPoints}|");
+                   
                 }
                 Console.Write("\n");
                 Console.Write("(Melee) ");
@@ -142,7 +152,9 @@ namespace Laboratorio_6_OOP_201902.Static
                 Console.Write($"[{Boarde.GetAttackPoints(EnumType.melee)[0]}]: ");
                 for (int a = 0; a < board.PlayerCards[0][EnumType.melee].Count; a++)
                 {
-                    Console.Write($"|{board.PlayerCards[0][EnumType.melee][a]}|");
+                    MeleeC = board.PlayerCards[0][EnumType.melee][a] as CombatCard;
+                    Console.Write($"|{MeleeC.AttackPoints}|");
+                    
                 }
                 Console.Write("\n\n");
                 Console.Write("Weather Cards: ");
@@ -150,7 +162,7 @@ namespace Laboratorio_6_OOP_201902.Static
                 {
                     Console.ForegroundColor = ConsoleColor.Blue;
 
-                    Console.Write($"|{board.WeatherCards[h]}|");
+                    Console.Write($"|{board.WeatherCards[h].Name}|");
                 }
                 Console.ResetColor();
                 Console.Write("\n\n");
@@ -166,7 +178,8 @@ namespace Laboratorio_6_OOP_201902.Static
                 Console.Write($"[{Boarde.GetAttackPoints(EnumType.longRange)[player]}]: ");
                 for (int t = 0; t < board.PlayerCards[player][EnumType.longRange].Count; t++)
                 {
-                    Console.Write($"|{board.PlayerCards[player][EnumType.longRange][t]}|");
+                    LongRangeC = board.PlayerCards[player][EnumType.longRange][t] as CombatCard;
+                    Console.Write($"|{LongRangeC.AttackPoints}|");
                 }
                 Console.Write("\n");
                 Console.Write("(Range) ");
@@ -179,7 +192,8 @@ namespace Laboratorio_6_OOP_201902.Static
                 Console.Write($"[{Boarde.GetAttackPoints(EnumType.range)[player]}]: ");
                 for (int s = 0; s < board.PlayerCards[player][EnumType.range].Count; s++)
                 {
-                    Console.Write($"|{board.PlayerCards[player][EnumType.range][s]}|");
+                    RangeC = board.PlayerCards[player][EnumType.range][s] as CombatCard;
+                    Console.Write($"|{RangeC.AttackPoints}|");
                 }
                 Console.Write("\n");
                 Console.Write("(Melee) ");
@@ -192,7 +206,8 @@ namespace Laboratorio_6_OOP_201902.Static
                 Console.Write($"[{Boarde.GetAttackPoints(EnumType.melee)[player]}]: ");
                 for (int v = 0; v < board.PlayerCards[player][EnumType.melee].Count; v++)
                 {
-                    Console.Write($"|{board.PlayerCards[player][EnumType.melee][v]}|");
+                    MeleeC = board.PlayerCards[player][EnumType.melee][v] as CombatCard;
+                    Console.Write($"|{MeleeC.AttackPoints}|");
                 }
                 Console.Write("\n\n");
                 Console.Write("Weather Cards: ");
@@ -200,7 +215,7 @@ namespace Laboratorio_6_OOP_201902.Static
                 {
                     Console.ForegroundColor = ConsoleColor.Blue;
 
-                    Console.Write($"|{board.WeatherCards[d]}|");
+                    Console.Write($"|{board.WeatherCards[d].Name}|");
                 }
                 Console.ResetColor();
                 Console.Write("\n\n");
@@ -228,7 +243,8 @@ namespace Laboratorio_6_OOP_201902.Static
                 Console.Write($"[{Boarde.GetAttackPoints(EnumType.longRange)[1]}]: ");
                 for (int c = 0; c < board.PlayerCards[1][EnumType.longRange].Count; c++)
                 {
-                    Console.Write($"|{board.PlayerCards[1][EnumType.longRange][c]}|");
+                    LongRangeC = board.PlayerCards[1][EnumType.longRange][c] as CombatCard;
+                    Console.Write($"|{LongRangeC.AttackPoints}|");
                 }
                 Console.Write("\n");
                 Console.Write("(Range) ");
@@ -241,7 +257,8 @@ namespace Laboratorio_6_OOP_201902.Static
                 Console.Write($"[{Boarde.GetAttackPoints(EnumType.range)[1]}]: ");
                 for (int x = 0; x < board.PlayerCards[1][EnumType.range].Count; x++)
                 {
-                    Console.Write($"|{board.PlayerCards[1][EnumType.range][x]}|");
+                    RangeC = board.PlayerCards[1][EnumType.range][x] as CombatCard;
+                    Console.Write($"|{RangeC.AttackPoints}|");
                 }
                 Console.Write("\n");
                 Console.Write("(Melee) ");
