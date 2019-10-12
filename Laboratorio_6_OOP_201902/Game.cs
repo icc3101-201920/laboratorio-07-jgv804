@@ -188,8 +188,7 @@ namespace Laboratorio_6_OOP_201902
             IAttackPoints playa2 = players[1];
             LifeP[0] = players[0].LifePoints;
             LifeP[1] = players[1].LifePoints;
-            AttackP[0] = playa1.GetAttackPoints(EnumType.None)[0];
-            AttackP[1] = playa2.GetAttackPoints(EnumType.None)[0];
+            
             for(int y = 0; y < players[0].Hand.Cards.Count; y++)
             {
                 if (players[0].Hand.Cards[y] is CombatCard)
@@ -205,6 +204,8 @@ namespace Laboratorio_6_OOP_201902
                     BoardGame.AddCard(players[1].Hand.Cards[w], 1, players[1].Hand.Cards[w].Type);
                 }
             }
+            AttackP[0] = playa1.GetAttackPoints(EnumType.None)[0];
+            AttackP[1] = playa2.GetAttackPoints(EnumType.None)[0];
             Visualization.ShowBoard(BoardGame, ActivePlayer.Id,LifeP,AttackP);
            
 
